@@ -1,3 +1,8 @@
 import styled from "styled-components";
 
-export const StyledFormView = styled.div``;
+export const StyledFormView = styled.div`
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
