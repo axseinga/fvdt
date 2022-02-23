@@ -9,10 +9,13 @@ export const StyledInput = styled.div`
         margin-bottom: 5px;
     }
     & input {
-        width: 200px;
+        font-size: 1.5rem;
+        min-width: 150px;
         height: 40px;
         border-radius: 10px;
         border: none;
         box-shadow: inset 0px 0px 7px 4px rgba(158, 158, 158, 0.68);
+        font-weight: bold;
+        justify-self: center;
     }
 `;
