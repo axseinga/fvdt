@@ -8,4 +8,5 @@ export const StyledTabHeader = styled.div`
     border-radius: 10px;
 
     font-size: 2rem;
+    cursor: pointer;
 `;

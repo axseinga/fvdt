@@ -4,6 +4,7 @@ import { TabHeader } from "./TabHeader";
 import { TabBody } from "./TabBody";
 import { Input } from "./Input";
 import { Button } from "./Button";
+import { Dropdown } from "./Dropdown";
 import { useState } from "react";
 import { useInputState } from "../hooks/useInputState";
 
@@ -15,10 +16,18 @@ export const Form = () => {
     const [name, setName] = useInputState("");
     const [surname, setSurname] = useInputState("");
     const [email, setEmail] = useInputState("");
+    const [phone, setPhone] = useInputState("");
+    const [gender, setGender] = useState("");
     return (
         <StyledForm>
             <Tab>
-                <TabHeader handleClick={() => setTab1(!tab1)}>
+                <TabHeader
+                    handleClick={() => {
+                        setTab1(!tab1);
+                        setTab2(false);
+                        setTab3(false);
+                    }}
+                >
                     Step 1: Your details
                 </TabHeader>
                 {tab1 ? (
@@ -60,13 +69,52 @@ export const Form = () => {
                 )}
             </Tab>
             <Tab>
-                <TabHeader handleClick={() => setTab2(!tab2)}>
-                    Step 1: Your details
+                <TabHeader
+                    handleClick={() => {
+                        setTab1(false);
+                        setTab2(!tab2);
+                        setTab3(false);
+                    }}
+                >
+                    Step 2: More comments
                 </TabHeader>
-                {tab2 ? <TabBody></TabBody> : ""}
+                {tab2 ? (
+                    <TabBody>
+                        <Input
+                            field="phone"
+                            type="number"
+                            label="Telephone number"
+                            value={phone}
+                            handleChange={setPhone}
+                            position={{ gridColumn: "1/2 ", gridRow: "1/2" }}
+                        />
+                        <Dropdown
+                            label="Gender"
+                            placeholder="Select Gender"
+                            options={["Gender 1", "Gender 2", "Gender 3"]}
+                            position={{ gridColumn: "2/3 ", gridRow: "1/2" }}
+                            handleChange={setGender}
+                        />
+                        <Button
+                            type="button"
+                            handleClick={() => console.log("click")}
+                            position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
+                        >
+                            Next
+                        </Button>
+                    </TabBody>
+                ) : (
+                    ""
+                )}
             </Tab>
             <Tab>
-                <TabHeader handleClick={() => setTab3(!tab3)}>
+                <TabHeader
+                    handleClick={() => {
+                        setTab1(false);
+                        setTab2(false);
+                        setTab3(!tab3);
+                    }}
+                >
                     Step 1: Your details
                 </TabHeader>
                 {tab3 ? <TabBody></TabBody> : ""}

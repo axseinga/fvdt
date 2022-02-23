@@ -3,10 +3,12 @@ import styled from "styled-components";
 export const StyledInput = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
 
     & label {
         font-size: 2rem;
         margin-bottom: 5px;
+        margin-left: 5px;
     }
     & input {
         font-size: 1.5rem;
