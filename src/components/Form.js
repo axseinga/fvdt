@@ -6,6 +6,7 @@ import { Input } from "./Input";
 import { Button } from "./Button";
 import { Textarea } from "./Textarea";
 import { Dropdown } from "./Dropdown";
+import { InputDob } from "./InputDob";
 import { useState } from "react";
 import { useInputState } from "../hooks/useInputState";
 
@@ -20,6 +21,9 @@ export const Form = () => {
     const [phone, setPhone] = useInputState("");
     const [gender, setGender] = useState("");
     const [comment, setComment] = useInputState("");
+    const [day, setDay] = useInputState("");
+    const [month, setMonth] = useInputState("");
+    const [year, setYear] = useInputState("");
 
     return (
         <StyledForm>
@@ -97,6 +101,14 @@ export const Form = () => {
                             options={["Gender 1", "Gender 2", "Gender 3"]}
                             position={{ gridColumn: "2/3 ", gridRow: "1/2" }}
                             handleChange={setGender}
+                        />
+                        <InputDob
+                            day={day}
+                            setDay={setDay}
+                            month={month}
+                            setMonth={setMonth}
+                            year={year}
+                            setYear={setYear}
                         />
                         <Button
                             type="button"

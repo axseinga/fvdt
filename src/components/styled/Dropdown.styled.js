@@ -5,6 +5,8 @@ export const StyledDropdown = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    justify-self: flex-end;
+    margin-top: 5px;
 
     & p {
         font-size: 2rem;
@@ -27,7 +29,6 @@ export const StyledDropdown = styled.div`
         border: none;
         box-shadow: inset 0px 0px 9px 7px rgba(66,66,66,0.63);
         font-weight: bold;
-        justify-self: center;
 
         cursor: pointer;
         &:hover {

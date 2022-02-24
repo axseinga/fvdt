@@ -8,5 +8,5 @@ export const StyledTabBody = styled.div`
     grid-template-rows: repeat(2, 1fr) 10%;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    gap: 2rem;
+    gap: 1rem;
 `;

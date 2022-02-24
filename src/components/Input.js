@@ -7,9 +7,10 @@ export const Input = ({
     value,
     handleChange,
     position,
+    width,
 }) => {
     return (
-        <StyledInput style={position}>
+        <StyledInput style={position} width={width}>
             <label htmlFor={field}>{label}</label>
             <input
                 type={type}

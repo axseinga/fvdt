@@ -12,7 +12,7 @@ export const StyledInput = styled.div`
     }
     & input {
         font-size: 1.5rem;
-        min-width: 150px;
+        width: ${(props) => (props.width === "short" ? "50px" : "200px")};
         height: 40px;
         border-radius: 10px;
         border: none;
