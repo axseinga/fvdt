@@ -5,14 +5,18 @@ export const Dropdown = ({
     label,
     placeholder,
     options,
+    field,
     position,
     handleChange,
+    errorMessage,
+    isTouched,
 }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     return (
         <StyledDropdown style={position}>
             <p>{label}</p>
+            {errorMessage && isTouched === true && <p>{errorMessage}</p>}
             <div>
                 <button
                     type="button"

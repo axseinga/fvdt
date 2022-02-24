@@ -6,9 +6,14 @@ export const StyledInputDob = styled.div`
     grid-area: 2 / 1 / 3 / 2;
     align-self: start;
 
-    & p {
+    & span {
         font-size: 2rem;
         margin-bottom: 5px;
+        margin-left: 5px;
+    }
+
+    & p {
+        color: red;
         margin-left: 5px;
     }
 

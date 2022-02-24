@@ -7,8 +7,9 @@ import { Button } from "./Button";
 import { Textarea } from "./Textarea";
 import { Dropdown } from "./Dropdown";
 import { InputDob } from "./InputDob";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useInputState } from "../hooks/useInputState";
+import { newUserSchema } from "../utils/validation/formValidation";
 
 export const Form = () => {
     const [tab1, setTab1] = useState(true);
@@ -19,11 +20,72 @@ export const Form = () => {
     const [surname, setSurname] = useInputState("");
     const [email, setEmail] = useInputState("");
     const [phone, setPhone] = useInputState("");
-    const [gender, setGender] = useState("");
-    const [comment, setComment] = useInputState("");
+    const [gender, setGender] = useState("Select Gender");
     const [day, setDay] = useInputState("");
     const [month, setMonth] = useInputState("");
     const [year, setYear] = useInputState("");
+    const [comment, setComment] = useInputState("");
+    const [dob, setDob] = useState("");
+
+    const [formErrors, setFormErrors] = useState({});
+    const [isTouched, setIsTouched] = useState({
+        name: false,
+        surname: false,
+        email: false,
+        gender: false,
+        day: false,
+        month: false,
+        year: false,
+        comment: false,
+    });
+
+    const genderList = ["Gender 1", "Gender 2", "Gender 3"];
+
+    useEffect(() => {
+        const date = `${year}-${month}-${day}`;
+        setDob(date);
+    }, [day, month, year]);
+
+    const validateForm = async () => {
+        const formValues = {
+            name: name,
+            surname: surname,
+            email: email,
+            phone: phone,
+            gender: gender,
+            dob: dob,
+            comment: comment,
+        };
+
+        const schema = newUserSchema(genderList);
+
+        try {
+            schema.validateSync(formValues, {
+                abortEarly: false,
+            });
+        } catch (err) {
+            let errors = [];
+            err.inner.forEach((error) => {
+                errors.push({ [error.path]: error.message });
+            });
+            const errorMessages = Object.assign({}, ...errors);
+            return errorMessages;
+        }
+    };
+
+    const handleBlur = (field) => {
+        setIsTouched((values) => ({ ...values, [field]: true }));
+    };
+
+    useEffect(async () => {
+        const errorMessages = await validateForm();
+
+        if (errorMessages) {
+            setFormErrors(errorMessages);
+        } else {
+            setFormErrors({});
+        }
+    }, [name, surname, email, phone, gender, dob, comment]);
 
     return (
         <StyledForm>
@@ -46,6 +108,9 @@ export const Form = () => {
                             value={name}
                             handleChange={setName}
                             position={{ gridColumn: "1/2 ", gridRow: "1/2" }}
+                            handleBlur={handleBlur}
+                            errorMessage={formErrors["name"]}
+                            isTouched={isTouched.name}
                         />
                         <Input
                             field="surname"
@@ -54,6 +119,9 @@ export const Form = () => {
                             value={surname}
                             handleChange={setSurname}
                             position={{ gridColumn: "2/3 ", gridRow: "1/2" }}
+                            handleBlur={handleBlur}
+                            errorMessage={formErrors["surname"]}
+                            isTouched={isTouched.surname}
                         />
                         <Input
                             field="email"
@@ -62,6 +130,9 @@ export const Form = () => {
                             value={email}
                             handleChange={setEmail}
                             position={{ gridColumn: "1/2 ", gridRow: "2/3" }}
+                            handleBlur={handleBlur}
+                            errorMessage={formErrors["email"]}
+                            isTouched={isTouched.email}
                         />
                         <Button
                             type="button"
@@ -94,13 +165,20 @@ export const Form = () => {
                             value={phone}
                             handleChange={setPhone}
                             position={{ gridColumn: "1/2 ", gridRow: "1/2" }}
+                            handleBlur={handleBlur}
+                            errorMessage={formErrors["phone"]}
+                            isTouched={isTouched.phone}
                         />
                         <Dropdown
                             label="Gender"
-                            placeholder="Select Gender"
-                            options={["Gender 1", "Gender 2", "Gender 3"]}
+                            placeholder={gender}
+                            options={genderList}
                             position={{ gridColumn: "2/3 ", gridRow: "1/2" }}
                             handleChange={setGender}
+                            field="gender"
+                            handleBlur={handleBlur}
+                            errorMessage={formErrors["gender"]}
+                            isTouched={isTouched.gender}
                         />
                         <InputDob
                             day={day}
@@ -109,6 +187,11 @@ export const Form = () => {
                             setMonth={setMonth}
                             year={year}
                             setYear={setYear}
+                            handleBlur={handleBlur}
+                            errorMessage={formErrors["dob"]}
+                            isDayTouched={isTouched.day}
+                            isMonthTouched={isTouched.month}
+                            isYearTouched={isTouched.year}
                         />
                         <Button
                             type="button"
@@ -140,6 +223,9 @@ export const Form = () => {
                             value={comment}
                             handleChange={setComment}
                             position={{ gridColumn: "1/3 ", gridRow: "1/4" }}
+                            handleBlur={handleBlur}
+                            errorMessage={formErrors["comment"]}
+                            isTouched={isTouched.comment}
                         />
                         <Button
                             type="button"

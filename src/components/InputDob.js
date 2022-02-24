@@ -2,11 +2,24 @@ import { StyledInputDob } from "./styled/InputDob.styled";
 import { Input } from "./Input";
 import { currentDate } from "../utils/currentDate";
 
-export const InputDob = ({ day, setDay, month, setMonth, year, setYear }) => {
+export const InputDob = ({
+    day,
+    setDay,
+    month,
+    setMonth,
+    year,
+    setYear,
+    handleBlur,
+    errorMessage,
+    isDayTouched,
+    isMonthTouched,
+    isYearTouched,
+}) => {
     const currentYear = currentDate.slice(0, 4);
+    const isTouched = isDayTouched && isMonthTouched && isYearTouched;
     return (
         <StyledInputDob>
-            <p>Date of birth</p>
+            <span>Date of birth</span>
             <div>
                 <Input
                     field="day"
@@ -17,6 +30,7 @@ export const InputDob = ({ day, setDay, month, setMonth, year, setYear }) => {
                     min="1"
                     max="31"
                     width="short"
+                    handleBlur={handleBlur}
                 />
                 <Input
                     field="month"
@@ -27,6 +41,7 @@ export const InputDob = ({ day, setDay, month, setMonth, year, setYear }) => {
                     min="1"
                     max="12"
                     width="short"
+                    handleBlur={handleBlur}
                 />
                 <Input
                     field="year"
@@ -37,8 +52,10 @@ export const InputDob = ({ day, setDay, month, setMonth, year, setYear }) => {
                     min="1920"
                     max={currentYear}
                     width="short"
+                    handleBlur={handleBlur}
                 />
             </div>
+            {errorMessage && isTouched === true && <p>{errorMessage}</p>}
         </StyledInputDob>
     );
 };

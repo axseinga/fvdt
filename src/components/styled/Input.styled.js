@@ -10,6 +10,12 @@ export const StyledInput = styled.div`
         margin-bottom: 5px;
         margin-left: 5px;
     }
+
+    & p {
+        color: red;
+        margin-left: 5px;
+    }
+
     & input {
         font-size: 1.5rem;
         width: ${(props) => (props.width === "short" ? "50px" : "200px")};

@@ -4,6 +4,16 @@ export const StyledTextarea = styled.div`
     display: flex;
     flex-direction: column;
 
+    & div {
+        display: flex;
+        align-items: center;
+    }
+
+    & p {
+        color: red;
+        margin-left: 10px;
+    }
+
     & label {
         font-size: 2rem;
         margin-bottom: 5px;
