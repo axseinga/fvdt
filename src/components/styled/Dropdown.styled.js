@@ -14,6 +14,11 @@ export const StyledDropdown = styled.div`
         margin-left: 5px;
     }
 
+    & span {
+        color: red;
+        margin-left: 5px;
+    }
+
     & button {
         display: flex;
         align-items: center;

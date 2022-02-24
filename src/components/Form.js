@@ -16,15 +16,15 @@ export const Form = () => {
     const [tab2, setTab2] = useState(false);
     const [tab3, setTab3] = useState(false);
 
-    const [name, setName] = useInputState("");
-    const [surname, setSurname] = useInputState("");
-    const [email, setEmail] = useInputState("");
-    const [phone, setPhone] = useInputState("");
+    const [name, setName, resetName] = useInputState("");
+    const [surname, setSurname, resetSurname] = useInputState("");
+    const [email, setEmail, resetEmail] = useInputState("");
+    const [phone, setPhone, resetPhone] = useInputState("");
     const [gender, setGender] = useState("Select Gender");
-    const [day, setDay] = useInputState("");
-    const [month, setMonth] = useInputState("");
-    const [year, setYear] = useInputState("");
-    const [comment, setComment] = useInputState("");
+    const [day, setDay, resetDay] = useInputState("");
+    const [month, setMonth, resetMonth] = useInputState("");
+    const [year, setYear, resetYear] = useInputState("");
+    const [comment, setComment, resetComment] = useInputState("");
     const [dob, setDob] = useState("");
 
     const [formErrors, setFormErrors] = useState({});
@@ -87,8 +87,60 @@ export const Form = () => {
         }
     }, [name, surname, email, phone, gender, dob, comment]);
 
+    const clearFormValues = () => {
+        resetName();
+        resetSurname();
+        resetEmail();
+        resetPhone();
+        resetDay();
+        resetMonth();
+        resetYear();
+        setGender("Select Gender");
+        setDob("");
+        setIsTouched({
+            name: false,
+            surname: false,
+            email: false,
+            gender: false,
+            day: false,
+            month: false,
+            year: false,
+            comment: false,
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Submitting the form");
+        console.log(formErrors);
+        setIsTouched({
+            name: true,
+            surname: true,
+            email: true,
+            phone: true,
+            gender: true,
+            day: true,
+            month: true,
+            year: true,
+            comment: true,
+        });
+        if (Object.keys(formErrors).length === 0) {
+            const newUser = {
+                name: name,
+                surname: surname,
+                email: email,
+                gender: gender,
+                dob: dob,
+                comment: comment,
+            };
+            // send newUser to backend //
+            clearFormValues();
+        }
+        return;
+    };
+
     return (
-        <StyledForm>
+        <StyledForm onSubmit={handleSubmit}>
             <Tab>
                 <TabHeader
                     handleClick={() => {
@@ -228,11 +280,11 @@ export const Form = () => {
                             isTouched={isTouched.comment}
                         />
                         <Button
-                            type="button"
+                            type="submit"
                             handleClick={() => console.log("click")}
                             position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
                         >
-                            Next
+                            Submit
                         </Button>
                     </TabBody>
                 ) : (

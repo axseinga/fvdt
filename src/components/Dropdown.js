@@ -5,7 +5,6 @@ export const Dropdown = ({
     label,
     placeholder,
     options,
-    field,
     position,
     handleChange,
     errorMessage,
@@ -16,7 +15,7 @@ export const Dropdown = ({
     return (
         <StyledDropdown style={position}>
             <p>{label}</p>
-            {errorMessage && isTouched === true && <p>{errorMessage}</p>}
+            {errorMessage && isTouched === true && <span>{errorMessage}</span>}
             <div>
                 <button
                     type="button"

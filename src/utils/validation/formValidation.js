@@ -13,13 +13,15 @@ export const newUserSchema = (arr) => {
             .required("Surname is required"),
         email: yup
             .string("Email is required")
-            .email("Email has to be valid email"),
+            .email("Email has to be valid email")
+            .required("Email is required"),
         phone: yup
             .string("Phone is required")
             .matches(
                 /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/,
                 "Phone numbers has to be valid"
-            ),
+            )
+            .required("Phone is required"),
         gender: yup
             .string()
             .oneOf(arr, "Please choose a gender")
