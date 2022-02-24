@@ -4,6 +4,7 @@ import { TabHeader } from "./TabHeader";
 import { TabBody } from "./TabBody";
 import { Input } from "./Input";
 import { Button } from "./Button";
+import { Textarea } from "./Textarea";
 import { Dropdown } from "./Dropdown";
 import { useState } from "react";
 import { useInputState } from "../hooks/useInputState";
@@ -18,6 +19,8 @@ export const Form = () => {
     const [email, setEmail] = useInputState("");
     const [phone, setPhone] = useInputState("");
     const [gender, setGender] = useState("");
+    const [comment, setComment] = useInputState("");
+
     return (
         <StyledForm>
             <Tab>
@@ -115,9 +118,28 @@ export const Form = () => {
                         setTab3(!tab3);
                     }}
                 >
-                    Step 1: Your details
+                    Step 3: Final comments
                 </TabHeader>
-                {tab3 ? <TabBody></TabBody> : ""}
+                {tab3 ? (
+                    <TabBody>
+                        <Textarea
+                            field="comment"
+                            label="Comments"
+                            value={comment}
+                            handleChange={setComment}
+                            position={{ gridColumn: "1/3 ", gridRow: "1/4" }}
+                        />
+                        <Button
+                            type="button"
+                            handleClick={() => console.log("click")}
+                            position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
+                        >
+                            Next
+                        </Button>
+                    </TabBody>
+                ) : (
+                    ""
+                )}
             </Tab>
         </StyledForm>
     );

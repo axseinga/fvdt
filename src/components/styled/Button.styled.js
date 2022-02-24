@@ -10,4 +10,5 @@ export const StyledButton = styled.button`
     width: 70%;
     background: #7061ca;
     justify-self: right;
+    align-self: end;
 `;
