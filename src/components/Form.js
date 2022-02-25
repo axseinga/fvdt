@@ -97,6 +97,7 @@ export const Form = () => {
         resetYear();
         setGender("Select Gender");
         setDob("");
+        resetComment();
         setIsTouched({
             name: false,
             surname: false,
@@ -188,7 +189,11 @@ export const Form = () => {
                         />
                         <Button
                             type="button"
-                            handleClick={() => console.log("click")}
+                            handleClick={() => {
+                                setTab1(false);
+                                setTab2(true);
+                                setTab3(false);
+                            }}
                             position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
                         >
                             Next
@@ -247,7 +252,11 @@ export const Form = () => {
                         />
                         <Button
                             type="button"
-                            handleClick={() => console.log("click")}
+                            handleClick={() => {
+                                setTab1(false);
+                                setTab2(false);
+                                setTab3(true);
+                            }}
                             position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
                         >
                             Next
