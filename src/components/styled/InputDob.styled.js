@@ -10,6 +10,7 @@ export const StyledInputDob = styled.div`
         font-size: 2rem;
         margin-bottom: 5px;
         margin-left: 5px;
+        font-weight: 700;
     }
 
     & p {

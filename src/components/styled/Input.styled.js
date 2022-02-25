@@ -9,6 +9,7 @@ export const StyledInput = styled.div`
         font-size: 2rem;
         margin-bottom: 5px;
         margin-left: 5px;
+        font-weight: 700;
     }
 
     & p {
@@ -18,7 +19,7 @@ export const StyledInput = styled.div`
 
     & input {
         font-size: 1.5rem;
-        width: ${(props) => (props.width === "short" ? "50px" : "200px")};
+        width: ${(props) => (props.width === "short" ? "50px" : "220px")};
         height: 40px;
         border-radius: 10px;
         border: none;

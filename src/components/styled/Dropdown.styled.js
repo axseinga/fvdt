@@ -6,12 +6,13 @@ export const StyledDropdown = styled.div`
     flex-direction: column;
     width: 100%;
     justify-self: flex-end;
-    margin-top: 5px;
+    align-self: end;
 
     & p {
         font-size: 2rem;
         margin-bottom: 5px;
         margin-left: 5px;
+        font-weight: 700;
     }
 
     & span {
@@ -22,17 +23,17 @@ export const StyledDropdown = styled.div`
     & button {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        background-color: #fff;
+        justify-content: space-around;
+        background: linear-gradient(180deg, rgba(255,255,255,1) 29%, rgba(177,177,177,1) 100%);
         color: black;
         
         font-size: 1.5rem;
         min-width: 150px;
-        color: #ADADAD;
+        color: #848484;
         height: 42px;
         border-radius: 10px;
         border: none;
-        box-shadow: inset 0px 0px 9px 7px rgba(66,66,66,0.63);
+        box-shadow: inset 0px 0px 7px 4px rgba(158, 158, 158, 0.68);
         font-weight: bold;
 
         cursor: pointer;

@@ -1,5 +1,6 @@
 import { StyledDropdown } from "./styled/Dropdown.styled";
 import { useState } from "react";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
 export const Dropdown = ({
     label,
@@ -23,7 +24,7 @@ export const Dropdown = ({
                         setIsVisible(!isVisible);
                     }}
                 >
-                    {placeholder}
+                    {placeholder} <MdKeyboardArrowDown />
                 </button>
                 {isVisible === false ? (
                     ""

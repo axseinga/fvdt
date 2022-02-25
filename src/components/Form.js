@@ -7,6 +7,7 @@ import { Button } from "./Button";
 import { Textarea } from "./Textarea";
 import { Dropdown } from "./Dropdown";
 import { InputDob } from "./InputDob";
+import { MdKeyboardArrowRight } from "react-icons/md";
 import { useState, useEffect } from "react";
 import { useInputState } from "../hooks/useInputState";
 import { newUserSchema } from "../utils/validation/formValidation";
@@ -197,7 +198,10 @@ export const Form = () => {
                             }}
                             position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
                         >
-                            Next
+                            Next{" "}
+                            <MdKeyboardArrowRight
+                                style={{ marginLeft: "5px" }}
+                            />
                         </Button>
                     </TabBody>
                 ) : (
@@ -260,7 +264,10 @@ export const Form = () => {
                             }}
                             position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
                         >
-                            Next
+                            Next{" "}
+                            <MdKeyboardArrowRight
+                                style={{ marginLeft: "5px" }}
+                            />
                         </Button>
                     </TabBody>
                 ) : (
