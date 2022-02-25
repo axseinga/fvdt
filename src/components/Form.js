@@ -10,6 +10,7 @@ import { InputDob } from "./InputDob";
 import { useState, useEffect } from "react";
 import { useInputState } from "../hooks/useInputState";
 import { newUserSchema } from "../utils/validation/formValidation";
+import { createUser } from "../services/api/userService";
 
 export const Form = () => {
     const [tab1, setTab1] = useState(true);
@@ -113,7 +114,6 @@ export const Form = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Submitting the form");
-        console.log(formErrors);
         setIsTouched({
             name: true,
             surname: true,
@@ -134,7 +134,7 @@ export const Form = () => {
                 dob: dob,
                 comment: comment,
             };
-            // send newUser to backend //
+            createUser(newUser);
             clearFormValues();
         }
         return;
