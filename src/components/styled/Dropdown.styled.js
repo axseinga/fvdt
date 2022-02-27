@@ -9,9 +9,10 @@ export const StyledDropdown = styled.div`
     align-self: end;
 
     & p {
-        font-size: 2rem;
+        font-size: 1.7rem;
         margin-bottom: 5px;
         margin-left: 5px;
+        margin-top: 0;
         font-weight: 700;
     }
 

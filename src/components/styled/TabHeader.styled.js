@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledTabHeader = styled.div`
-    padding: 2rem 2.5rem;
+    padding: 2rem;
     background-color: #fdc200;
     background: linear-gradient(
         180deg,

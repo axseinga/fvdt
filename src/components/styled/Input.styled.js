@@ -6,7 +6,7 @@ export const StyledInput = styled.div`
     justify-content: flex-end;
 
     & label {
-        font-size: 2rem;
+        font-size: 1.7rem;
         margin-bottom: 5px;
         margin-left: 5px;
         font-weight: 700;
