@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { useInputState } from "../hooks/useInputState";
 import { StyledForm } from "./styled/Form.styled";
 import { Tab } from "./Tab";
 import { TabHeader } from "./TabHeader";
@@ -8,8 +10,6 @@ import { Textarea } from "./Textarea";
 import { Dropdown } from "./Dropdown";
 import { InputDob } from "./InputDob";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { useState, useEffect } from "react";
-import { useInputState } from "../hooks/useInputState";
 import { newUserSchema } from "../utils/validation/formValidation";
 import { createUser } from "../services/api/userService";
 
@@ -47,6 +47,12 @@ export const Form = () => {
         const date = `${year}-${month}-${day}`;
         setDob(date);
     }, [day, month, year]);
+
+    const toggleTab = (first, second, third) => {
+        setTab1(first);
+        setTab2(second);
+        setTab3(third);
+    };
 
     const validateForm = async () => {
         const formValues = {
@@ -145,13 +151,7 @@ export const Form = () => {
     return (
         <StyledForm onSubmit={handleSubmit}>
             <Tab>
-                <TabHeader
-                    handleClick={() => {
-                        setTab1(!tab1);
-                        setTab2(false);
-                        setTab3(false);
-                    }}
-                >
+                <TabHeader handleClick={() => toggleTab(true, false, false)}>
                     Step 1: Your details
                 </TabHeader>
                 {tab1 ? (
@@ -191,11 +191,7 @@ export const Form = () => {
                         />
                         <Button
                             type="button"
-                            handleClick={() => {
-                                setTab1(false);
-                                setTab2(true);
-                                setTab3(false);
-                            }}
+                            handleClick={() => toggleTab(false, true, false)}
                             position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
                         >
                             Next{" "}
@@ -209,13 +205,7 @@ export const Form = () => {
                 )}
             </Tab>
             <Tab>
-                <TabHeader
-                    handleClick={() => {
-                        setTab1(false);
-                        setTab2(!tab2);
-                        setTab3(false);
-                    }}
-                >
+                <TabHeader handleClick={() => toggleTab(false, true, false)}>
                     Step 2: More comments
                 </TabHeader>
                 {tab2 ? (
@@ -257,11 +247,7 @@ export const Form = () => {
                         />
                         <Button
                             type="button"
-                            handleClick={() => {
-                                setTab1(false);
-                                setTab2(false);
-                                setTab3(true);
-                            }}
+                            handleClick={() => toggleTab(false, false, true)}
                             position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
                         >
                             Next{" "}
@@ -275,13 +261,7 @@ export const Form = () => {
                 )}
             </Tab>
             <Tab>
-                <TabHeader
-                    handleClick={() => {
-                        setTab1(false);
-                        setTab2(false);
-                        setTab3(!tab3);
-                    }}
-                >
+                <TabHeader handleClick={() => toggleTab(false, false, true)}>
                     Step 3: Final comments
                 </TabHeader>
                 {tab3 ? (
