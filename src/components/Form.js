@@ -54,8 +54,8 @@ export const Form = () => {
         setTab3(third);
     };
 
-    const validateForm = async () => {
-        const formValues = {
+    const validateForm = async (formValues) => {
+        /*const formValues = {
             name: name,
             surname: surname,
             email: email,
@@ -63,7 +63,7 @@ export const Form = () => {
             gender: gender,
             dob: dob,
             comment: comment,
-        };
+        };*/
 
         const schema = newUserSchema(genderList);
 
@@ -86,7 +86,16 @@ export const Form = () => {
     };
 
     useEffect(async () => {
-        const errorMessages = await validateForm();
+        const formValues = {
+            name: name,
+            surname: surname,
+            email: email,
+            phone: phone,
+            gender: gender,
+            dob: dob,
+            comment: comment,
+        };
+        const errorMessages = await validateForm(formValues);
 
         if (errorMessages) {
             setFormErrors(errorMessages);
@@ -116,6 +125,42 @@ export const Form = () => {
             year: false,
             comment: false,
         });
+    };
+
+    const validateFirstStep = async () => {
+        setIsTouched({
+            name: true,
+            surname: true,
+            email: true,
+            phone: false,
+            gender: false,
+            day: false,
+            month: false,
+            year: false,
+            comment: false,
+        });
+
+        if (Object.keys(formErrors).length === 4) {
+            toggleTab(false, true, false);
+        } else return;
+    };
+
+    const validateSecondStep = async () => {
+        setIsTouched({
+            name: true,
+            surname: true,
+            email: true,
+            phone: true,
+            gender: true,
+            day: true,
+            month: true,
+            year: true,
+            comment: false,
+        });
+
+        if (Object.keys(formErrors).length === 1) {
+            toggleTab(false, false, true);
+        } else return;
     };
 
     const handleSubmit = (e) => {
@@ -191,7 +236,9 @@ export const Form = () => {
                         />
                         <Button
                             type="button"
-                            handleClick={() => toggleTab(false, true, false)}
+                            handleClick={() => {
+                                validateFirstStep();
+                            }}
                             position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
                         >
                             Next{" "}
@@ -247,7 +294,7 @@ export const Form = () => {
                         />
                         <Button
                             type="button"
-                            handleClick={() => toggleTab(false, false, true)}
+                            handleClick={() => validateSecondStep()}
                             position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
                         >
                             Next{" "}
