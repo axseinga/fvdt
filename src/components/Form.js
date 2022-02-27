@@ -278,7 +278,6 @@ export const Form = () => {
                         />
                         <Button
                             type="submit"
-                            handleClick={() => console.log("click")}
                             position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
                         >
                             Submit
