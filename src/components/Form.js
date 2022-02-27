@@ -55,16 +55,6 @@ export const Form = () => {
     };
 
     const validateForm = async (formValues) => {
-        /*const formValues = {
-            name: name,
-            surname: surname,
-            email: email,
-            phone: phone,
-            gender: gender,
-            dob: dob,
-            comment: comment,
-        };*/
-
         const schema = newUserSchema(genderList);
 
         try {

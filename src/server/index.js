@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const sequelize = require("./database");
-const User = require("./model/userModel");
+const router = require("./routes/userRoutes");
 
 sequelize.sync().then(() => console.log("db created"));
 
@@ -19,27 +19,7 @@ app.use(
 
 const port = 3001;
 
-app.get("/users", async (req, res) => {
-    const users = await User.findAll();
-    res.send(users);
-});
-
-app.post("/users", async (req, res) => {
-    await User.create(req.body);
-    res.send("user created");
-});
-
-app.get("/users/:id", async (req, res) => {
-    const reqId = req.params.id;
-    const user = await User.findOne({ where: { id: reqId } });
-    res.send(user);
-});
-
-app.put("/users/:id", async (req, res) => {
-    const reqId = req.params.id;
-    await User.destroy({ where: { id: reqId } });
-    res.send("user removed");
-});
+app.use("/users", router);
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
