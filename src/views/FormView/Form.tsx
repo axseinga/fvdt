@@ -9,26 +9,50 @@ import { TabStep2 } from "./TabStep2";
 import { TabStep3 } from "./TabStep3";
 
 export const Form = () => {
-    const [tab1, setTab1] = useState(true);
-    const [tab2, setTab2] = useState(false);
-    const [tab3, setTab3] = useState(false);
+    const [tab1, setTab1] = useState<boolean>(true);
+    const [tab2, setTab2] = useState<boolean>(false);
+    const [tab3, setTab3] = useState<boolean>(false);
 
     const [name, setName, resetName] = useInputState("");
     const [surname, setSurname, resetSurname] = useInputState("");
     const [email, setEmail, resetEmail] = useInputState("");
     const [phone, setPhone, resetPhone] = useInputState("");
-    const [gender, setGender] = useState("Select Gender");
+    const [gender, setGender] = useState<string>("Select Gender");
     const [day, setDay, resetDay] = useInputState("");
     const [month, setMonth, resetMonth] = useInputState("");
     const [year, setYear, resetYear] = useInputState("");
     const [comment, setComment, resetComment] = useInputState("");
-    const [dob, setDob] = useState("");
+    const [dob, setDob] = useState<string>("");
 
-    const [formErrors, setFormErrors] = useState({});
-    const [isTouched, setIsTouched] = useState({
+    type FormErrorsState = {
+        name?: string;
+        surname?: string;
+        email?: string;
+        phone?: string;
+        gender?: string;
+        dob?: string;
+        comment?: string;
+    };
+
+    const [formErrors, setFormErrors] = useState<FormErrorsState>({});
+
+    type isTouchedState = {
+        name: boolean;
+        surname: boolean;
+        email: boolean;
+        phone: boolean;
+        gender: boolean;
+        day: boolean;
+        month: boolean;
+        year: boolean;
+        comment: boolean;
+    };
+
+    const [isTouched, setIsTouched] = useState<isTouchedState>({
         name: false,
         surname: false,
         email: false,
+        phone: false,
         gender: false,
         day: false,
         month: false,
@@ -41,13 +65,27 @@ export const Form = () => {
         setDob(date);
     }, [day, month, year]);
 
-    const toggleTab = (first, second, third) => {
+    const toggleTab = (first: boolean, second: boolean, third: boolean) => {
         setTab1(first);
         setTab2(second);
         setTab3(third);
     };
 
-    const validateForm = async (formValues) => {
+    type FormValuesTypes = {
+        name: string;
+        surname: string;
+        email: string;
+        phone: string;
+        gender: string;
+        dob: string;
+        comment: string;
+    };
+
+    type ErrorType = {
+        [key: string]: string;
+    }[];
+
+    const validateForm = async (formValues: FormValuesTypes) => {
         const schema = newUserSchema();
 
         try {
@@ -55,8 +93,8 @@ export const Form = () => {
                 abortEarly: false,
             });
         } catch (err) {
-            let errors = [];
-            err.inner.forEach((error) => {
+            let errors: ErrorType[] | [] = [];
+            err.inner.forEach((error: ErrorType) => {
                 errors.push({ [error.path]: error.message });
             });
             const errorMessages = Object.assign({}, ...errors);
@@ -64,12 +102,12 @@ export const Form = () => {
         }
     };
 
-    const handleBlur = (field) => {
+    const handleBlur = (field: string): void => {
         setIsTouched((values) => ({ ...values, [field]: true }));
     };
 
     useEffect(() => {
-        const formValues = {
+        const formValues: FormValuesTypes = {
             name: name,
             surname: surname,
             email: email,
@@ -79,7 +117,7 @@ export const Form = () => {
             comment: comment,
         };
 
-        const getErrorMessages = async () => {
+        const getErrorMessages = async (): Promise<void> => {
             const errorMessages = await validateForm(formValues);
 
             if (errorMessages) {
@@ -107,6 +145,7 @@ export const Form = () => {
             name: false,
             surname: false,
             email: false,
+            phone: false,
             gender: false,
             day: false,
             month: false,
@@ -115,7 +154,7 @@ export const Form = () => {
         });
     };
 
-    const validateFirstStep = async () => {
+    const validateFirstStep = (): void => {
         setIsTouched((values) => ({
             ...values,
             name: true,
@@ -128,7 +167,7 @@ export const Form = () => {
         } else return;
     };
 
-    const validateSecondStep = async () => {
+    const validateSecondStep = (): void => {
         setIsTouched((values) => ({
             ...values,
             name: true,
@@ -146,9 +185,18 @@ export const Form = () => {
         } else return;
     };
 
-    const handleSubmit = (e) => {
+    type NewUserType = {
+        name: string;
+        surname: string;
+        email: string;
+        phone: string;
+        gender: string;
+        dob: string;
+        comment: string;
+    };
+
+    const handleSubmit = (e: Event) => {
         e.preventDefault();
-        console.log("Submitting the form");
         setIsTouched({
             name: true,
             surname: true,
@@ -161,7 +209,7 @@ export const Form = () => {
             comment: true,
         });
         if (Object.keys(formErrors).length === 0) {
-            const newUser = {
+            const newUser: NewUserType = {
                 name: name,
                 surname: surname,
                 email: email,

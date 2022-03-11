@@ -8,12 +8,22 @@ export const getUsers = () => {
     return request.then((response) => response.data);
 };
 
-export const createUser = (user) => {
+type NewUserType = {
+    name: string;
+    surname: string;
+    email: string;
+    phone: string;
+    gender: string;
+    dob: string;
+    comment: string;
+};
+
+export const createUser = (user: NewUserType) => {
     const request = axios.post(baseUrl, user);
     return request.then((response) => response.data);
 };
 
-export const removeUser = (id) => {
+export const removeUser = (id: string) => {
     const request = axios.delete(`${baseUrl}/${id}`);
     return request.then((response) => response.data);
 };

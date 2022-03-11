@@ -16,7 +16,18 @@ type TabStep1Props = {
     setSurname: () => void;
     email: string;
     setEmail: () => void;
-}
+};
+
+/*type ErrorType = {
+    [key: string]: string;
+}[];
+
+type FormTabsContextState = {
+    toggleTab: () => void;
+    handleBlur: () => void;
+    formErrors: ErrorType[];
+    isTouched: boolean;
+} | null;*/
 
 export const TabStep1 = ({
     validateFirstStep,
@@ -28,8 +39,9 @@ export const TabStep1 = ({
     email,
     setEmail,
 }: TabStep1Props) => {
-    const { toggleTab, handleBlur, formErrors, isTouched } =
-        useContext(FormTabsContext);
+    const { toggleTab, handleBlur, formErrors, isTouched } = useContext(
+        /*<FormTabsContextState>*/ FormTabsContext
+    );
     return (
         <Tab>
             <TabHeader handleClick={() => toggleTab(true, false, false)}>
