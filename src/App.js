@@ -1,5 +1,5 @@
 import { GlobalStyle } from "./styles/globalStyle";
-import { FormView } from "./views/FormView";
+import { FormView } from "./views/FormView/FormView";
 
 const App = () => {
     return (

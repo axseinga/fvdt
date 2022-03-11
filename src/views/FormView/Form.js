@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
-import { useInputState } from "../hooks/useInputState";
+import { useInputState } from "../../hooks/useInputState";
 import { StyledForm } from "./styled/Form.styled";
-import { Tab } from "./Tab";
-import { TabHeader } from "./TabHeader";
-import { TabBody } from "./TabBody";
-import { Input } from "./Input";
-import { Button } from "./Button";
-import { Textarea } from "./Textarea";
-import { Dropdown } from "./Dropdown";
-import { InputDob } from "./InputDob";
+import { Tab } from "../../components/Tab";
+import { TabHeader } from "../../components/TabHeader";
+import { TabBody } from "../../components/TabBody";
+import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
+import { Textarea } from "../../components/Textarea";
+import { Dropdown } from "../../components/Dropdown";
+import { InputDob } from "../../components/InputDob";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { genderFieldData } from "../utils/genderFieldData";
-import { newUserSchema } from "../utils/validation/formValidation";
-import { createUser } from "../services/api/userService";
+import { genderFieldData } from "../../utils/genderFieldData";
+import { newUserSchema } from "../../utils/validation/formValidation";
+import { createUser } from "../../services/api/userService";
 
 export const Form = () => {
     const [tab1, setTab1] = useState(true);
@@ -122,17 +122,12 @@ export const Form = () => {
     };
 
     const validateFirstStep = async () => {
-        setIsTouched({
+        setIsTouched((values) => ({
+            ...values,
             name: true,
             surname: true,
             email: true,
-            phone: false,
-            gender: false,
-            day: false,
-            month: false,
-            year: false,
-            comment: false,
-        });
+        }));
 
         if (Object.keys(formErrors).length === 4) {
             toggleTab(false, true, false);
@@ -140,7 +135,8 @@ export const Form = () => {
     };
 
     const validateSecondStep = async () => {
-        setIsTouched({
+        setIsTouched((values) => ({
+            ...values,
             name: true,
             surname: true,
             email: true,
@@ -149,8 +145,7 @@ export const Form = () => {
             day: true,
             month: true,
             year: true,
-            comment: false,
-        });
+        }));
 
         if (Object.keys(formErrors).length === 1) {
             toggleTab(false, false, true);
