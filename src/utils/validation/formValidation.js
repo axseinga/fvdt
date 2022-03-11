@@ -1,7 +1,8 @@
 import * as yup from "yup";
 import { currentDate } from "../currentDate";
+import { genderFieldData } from "../genderFieldData";
 
-export const newUserSchema = (arr) => {
+export const newUserSchema = () => {
     const schema = yup.object().shape({
         name: yup
             .string("Name is required")
@@ -24,7 +25,7 @@ export const newUserSchema = (arr) => {
             .required("Phone is required"),
         gender: yup
             .string()
-            .oneOf(arr, "Please choose a gender")
+            .oneOf(genderFieldData, "Please choose a gender")
             .required("Please choose a gender"),
         dob: yup
             .date("Please choose a valid date")

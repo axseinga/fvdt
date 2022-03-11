@@ -10,6 +10,7 @@ import { Textarea } from "./Textarea";
 import { Dropdown } from "./Dropdown";
 import { InputDob } from "./InputDob";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { genderFieldData } from "../utils/genderFieldData";
 import { newUserSchema } from "../utils/validation/formValidation";
 import { createUser } from "../services/api/userService";
 
@@ -41,8 +42,6 @@ export const Form = () => {
         comment: false,
     });
 
-    const genderList = ["Gender 1", "Gender 2", "Gender 3"];
-
     useEffect(() => {
         const date = `${year}-${month}-${day}`;
         setDob(date);
@@ -55,7 +54,7 @@ export const Form = () => {
     };
 
     const validateForm = async (formValues) => {
-        const schema = newUserSchema(genderList);
+        const schema = newUserSchema();
 
         try {
             schema.validateSync(formValues, {
@@ -261,7 +260,7 @@ export const Form = () => {
                         <Dropdown
                             label="Gender"
                             placeholder={gender}
-                            options={genderList}
+                            options={genderFieldData}
                             position={{ gridColumn: "2/3 ", gridRow: "1/2" }}
                             handleChange={setGender}
                             field="gender"
