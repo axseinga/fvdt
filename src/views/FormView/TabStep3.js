@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { Tab } from "../../components/Tab";
 import { TabHeader } from "../../components/TabHeader";
 import { TabBody } from "../../components/TabBody";
 import { Textarea } from "../../components/Textarea";
 import { Button } from "../../components/Button";
+import { FormTabsContext } from "../../services/context/FormTabsContext";
 
-export const TabStep3 = () => {
+export const TabStep3 = ({ tab3, comment, setComment }) => {
+    const { toggleTab, handleBlur, formErrors, isTouched } =
+        useContext(FormTabsContext);
     return (
         <Tab>
             <TabHeader handleClick={() => toggleTab(false, false, true)}>

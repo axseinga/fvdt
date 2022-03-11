@@ -1,18 +1,12 @@
 import { useState, useEffect } from "react";
 import { useInputState } from "../../hooks/useInputState";
-import { StyledForm } from "./styled/Form.styled";
-import { Tab } from "../../components/Tab";
-import { TabHeader } from "../../components/TabHeader";
-import { TabBody } from "../../components/TabBody";
-import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
-import { Textarea } from "../../components/Textarea";
-import { Dropdown } from "../../components/Dropdown";
-import { InputDob } from "../../components/InputDob";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import { genderFieldData } from "../../utils/genderFieldData";
+import { FormTabsContext } from "../../services/context/FormTabsContext";
 import { newUserSchema } from "../../utils/validation/formValidation";
 import { createUser } from "../../services/api/userService";
+import { StyledForm } from "./styled/Form.styled";
+import { TabStep1 } from "./TabStep1";
+import { TabStep2 } from "./TabStep2";
+import { TabStep3 } from "./TabStep3";
 
 export const Form = () => {
     const [tab1, setTab1] = useState(true);
@@ -184,145 +178,44 @@ export const Form = () => {
 
     return (
         <StyledForm onSubmit={handleSubmit}>
-            <Tab>
-                <TabHeader handleClick={() => toggleTab(true, false, false)}>
-                    Step 1: Your details
-                </TabHeader>
-                {tab1 ? (
-                    <TabBody>
-                        <Input
-                            field="name"
-                            type="text"
-                            label="First Name"
-                            value={name}
-                            handleChange={setName}
-                            position={{ gridColumn: "1/2 ", gridRow: "1/2" }}
-                            handleBlur={handleBlur}
-                            errorMessage={formErrors["name"]}
-                            isTouched={isTouched.name}
-                        />
-                        <Input
-                            field="surname"
-                            type="text"
-                            label="Surname"
-                            value={surname}
-                            handleChange={setSurname}
-                            position={{ gridColumn: "2/3 ", gridRow: "1/2" }}
-                            handleBlur={handleBlur}
-                            errorMessage={formErrors["surname"]}
-                            isTouched={isTouched.surname}
-                        />
-                        <Input
-                            field="email"
-                            type="email"
-                            label="Email Address"
-                            value={email}
-                            handleChange={setEmail}
-                            position={{ gridColumn: "1/2 ", gridRow: "2/3" }}
-                            handleBlur={handleBlur}
-                            errorMessage={formErrors["email"]}
-                            isTouched={isTouched.email}
-                        />
-                        <Button
-                            type="button"
-                            handleClick={() => {
-                                validateFirstStep();
-                            }}
-                            position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
-                        >
-                            Next{" "}
-                            <MdKeyboardArrowRight
-                                style={{ marginLeft: "5px" }}
-                            />
-                        </Button>
-                    </TabBody>
-                ) : (
-                    ""
-                )}
-            </Tab>
-            <Tab>
-                <TabHeader handleClick={() => toggleTab(false, true, false)}>
-                    Step 2: More comments
-                </TabHeader>
-                {tab2 ? (
-                    <TabBody>
-                        <Input
-                            field="phone"
-                            type="number"
-                            label="Telephone number"
-                            value={phone}
-                            handleChange={setPhone}
-                            position={{ gridColumn: "1/2 ", gridRow: "1/2" }}
-                            handleBlur={handleBlur}
-                            errorMessage={formErrors["phone"]}
-                            isTouched={isTouched.phone}
-                        />
-                        <Dropdown
-                            label="Gender"
-                            placeholder={gender}
-                            options={genderFieldData}
-                            position={{ gridColumn: "2/3 ", gridRow: "1/2" }}
-                            handleChange={setGender}
-                            field="gender"
-                            handleBlur={handleBlur}
-                            errorMessage={formErrors["gender"]}
-                            isTouched={isTouched.gender}
-                        />
-                        <InputDob
-                            day={day}
-                            setDay={setDay}
-                            month={month}
-                            setMonth={setMonth}
-                            year={year}
-                            setYear={setYear}
-                            handleBlur={handleBlur}
-                            errorMessage={formErrors["dob"]}
-                            isDayTouched={isTouched.day}
-                            isMonthTouched={isTouched.month}
-                            isYearTouched={isTouched.year}
-                        />
-                        <Button
-                            type="button"
-                            handleClick={() => validateSecondStep()}
-                            position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
-                        >
-                            Next{" "}
-                            <MdKeyboardArrowRight
-                                style={{ marginLeft: "5px" }}
-                            />
-                        </Button>
-                    </TabBody>
-                ) : (
-                    ""
-                )}
-            </Tab>
-            <Tab>
-                <TabHeader handleClick={() => toggleTab(false, false, true)}>
-                    Step 3: Final comments
-                </TabHeader>
-                {tab3 ? (
-                    <TabBody>
-                        <Textarea
-                            field="comment"
-                            label="Comments"
-                            value={comment}
-                            handleChange={setComment}
-                            position={{ gridColumn: "1/3 ", gridRow: "1/4" }}
-                            handleBlur={handleBlur}
-                            errorMessage={formErrors["comment"]}
-                            isTouched={isTouched.comment}
-                        />
-                        <Button
-                            type="submit"
-                            position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
-                        >
-                            Submit
-                        </Button>
-                    </TabBody>
-                ) : (
-                    ""
-                )}
-            </Tab>
+            <FormTabsContext.Provider
+                value={{
+                    toggleTab,
+                    handleBlur,
+                    formErrors,
+                    isTouched,
+                }}
+            >
+                <TabStep1
+                    validateFirstStep={validateFirstStep}
+                    tab1={tab1}
+                    name={name}
+                    setName={setName}
+                    surname={surname}
+                    setSurname={setSurname}
+                    email={email}
+                    setEmail={setEmail}
+                />
+                <TabStep2
+                    validateSecondStep={validateSecondStep}
+                    tab2={tab2}
+                    phone={phone}
+                    setPhone={setPhone}
+                    gender={gender}
+                    setGender={setGender}
+                    day={day}
+                    setDay={setDay}
+                    month={month}
+                    setMonth={setMonth}
+                    year={year}
+                    setYear={setYear}
+                />
+                <TabStep3
+                    tab3={tab3}
+                    comment={comment}
+                    setComment={setComment}
+                />
+            </FormTabsContext.Provider>
         </StyledForm>
     );
 };
