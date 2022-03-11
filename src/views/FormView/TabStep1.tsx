@@ -16,6 +16,8 @@ export const TabStep1 = ({
     setSurname,
     email,
     setEmail,
+}: {
+    validateFirstStep: () => void;
 }) => {
     const { toggleTab, handleBlur, formErrors, isTouched } =
         useContext(FormTabsContext);
