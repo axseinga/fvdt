@@ -6,11 +6,11 @@ export const newUserSchema = () => {
     const schema = yup.object().shape({
         name: yup
             .string("Name is required")
-            .min(2, "Name has to have at least 3 letters")
+            .min(2, "Name has to have at least 2 letters")
             .required("Name is required"),
         surname: yup
             .string("Surname is required")
-            .min(2, "Surname has to have at least 3 letters")
+            .min(2, "Surname has to have at least 2 letters")
             .required("Surname is required"),
         email: yup
             .string("Email is required")
