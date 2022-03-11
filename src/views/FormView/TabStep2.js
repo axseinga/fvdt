@@ -70,7 +70,7 @@ export const TabStep2 = ({
                     />
                     <Button
                         type="button"
-                        handleClick={() => validateSecondStep()}
+                        handleClick={validateSecondStep}
                         position={{ gridColumn: "3/4 ", gridRow: "3/4" }}
                     >
                         Next{" "}
