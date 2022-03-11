@@ -5,6 +5,7 @@ export const StyledInputDob = styled.div`
     flex-direction: column;
     grid-area: 2 / 1 / 3 / 2;
     align-self: start;
+    position: relative;
 
     & span {
         font-size: 1.7rem;
@@ -16,6 +17,8 @@ export const StyledInputDob = styled.div`
     & p {
         color: red;
         margin-left: 5px;
+        position: absolute;
+        top: 10px;
     }
 
     & div {

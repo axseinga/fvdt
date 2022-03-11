@@ -4,6 +4,7 @@ export const StyledInput = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    position: relative;
 
     & label {
         font-size: 1.7rem;
@@ -15,6 +16,8 @@ export const StyledInput = styled.div`
     & p {
         color: red;
         margin-left: 5px;
+        position: absolute;
+        top: 20px;
     }
 
     & input {
