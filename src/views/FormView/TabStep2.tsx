@@ -10,6 +10,21 @@ import { Button } from "../../components/Button";
 import { genderFieldData } from "../../utils/genderFieldData";
 import { FormTabsContext } from "../../services/context/FormTabsContext";
 
+type TabStep2Props = {
+    validateSecondStep: () => void;
+    tab2: boolean;
+    phone: string;
+    setPhone: () => void;
+    gender: string;
+    setGender: () => void;
+    day: string;
+    setDay: () => void;
+    month: string;
+    setMonth: () => void;
+    year: string;
+    setYear: () => void;
+};
+
 export const TabStep2 = ({
     validateSecondStep,
     tab2,
@@ -23,7 +38,7 @@ export const TabStep2 = ({
     setMonth,
     year,
     setYear,
-}) => {
+}: TabStep2Props) => {
     const { toggleTab, handleBlur, formErrors, isTouched } =
         useContext(FormTabsContext);
     return (
@@ -50,7 +65,6 @@ export const TabStep2 = ({
                         options={genderFieldData}
                         position={{ gridColumn: "2/3 ", gridRow: "1/2" }}
                         handleChange={setGender}
-                        field="gender"
                         handleBlur={handleBlur}
                         errorMessage={formErrors["gender"]}
                         isTouched={isTouched.gender}

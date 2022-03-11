@@ -9,7 +9,7 @@ type Position = {
 type ButtonProps = {
     type: string;
     children: ReactNode;
-    handleClick: () => void;
+    handleClick?: () => void;
     position?: Position;
 };
 

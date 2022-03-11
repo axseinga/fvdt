@@ -7,6 +7,17 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { Button } from "../../components/Button";
 import { FormTabsContext } from "../../services/context/FormTabsContext";
 
+type TabStep1Props = {
+    validateFirstStep: () => void;
+    tab1: boolean;
+    name: string;
+    setName: () => void;
+    surname: string;
+    setSurname: () => void;
+    email: string;
+    setEmail: () => void;
+}
+
 export const TabStep1 = ({
     validateFirstStep,
     tab1,
@@ -16,9 +27,7 @@ export const TabStep1 = ({
     setSurname,
     email,
     setEmail,
-}: {
-    validateFirstStep: () => void;
-}) => {
+}: TabStep1Props) => {
     const { toggleTab, handleBlur, formErrors, isTouched } =
         useContext(FormTabsContext);
     return (

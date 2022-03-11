@@ -6,7 +6,13 @@ import { Textarea } from "../../components/Textarea";
 import { Button } from "../../components/Button";
 import { FormTabsContext } from "../../services/context/FormTabsContext";
 
-export const TabStep3 = ({ tab3, comment, setComment }) => {
+type TabStep3Props = {
+    tab3: boolean;
+    comment: string;
+    setComment: () => void;
+};
+
+export const TabStep3 = ({ tab3, comment, setComment }: TabStep3Props) => {
     const { toggleTab, handleBlur, formErrors, isTouched } =
         useContext(FormTabsContext);
     return (

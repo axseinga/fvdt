@@ -12,7 +12,7 @@ type InputProps = {
     value: string;
     handleChange: () => void;
     position?: Position;
-    width: string | null;
+    width?: string;
     handleBlur: (field: string) => void;
     isTouched?: boolean;
     errorMessage?: string;
