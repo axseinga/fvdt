@@ -14,7 +14,7 @@ export const TabStep3 = ({ tab3, comment, setComment }) => {
             <TabHeader handleClick={() => toggleTab(false, false, true)}>
                 Step 3: Final comments
             </TabHeader>
-            {tab3 ? (
+            {tab3 && (
                 <TabBody>
                     <Textarea
                         field="comment"
@@ -33,8 +33,6 @@ export const TabStep3 = ({ tab3, comment, setComment }) => {
                         Submit
                     </Button>
                 </TabBody>
-            ) : (
-                ""
             )}
         </Tab>
     );

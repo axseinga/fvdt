@@ -24,7 +24,7 @@ export const TabStep1 = ({
             <TabHeader handleClick={() => toggleTab(true, false, false)}>
                 Step 1: Your details
             </TabHeader>
-            {tab1 ? (
+            {tab1 && (
                 <TabBody>
                     <Input
                         field="name"
@@ -70,8 +70,6 @@ export const TabStep1 = ({
                         <MdKeyboardArrowRight style={{ marginLeft: "5px" }} />
                     </Button>
                 </TabBody>
-            ) : (
-                ""
             )}
         </Tab>
     );
