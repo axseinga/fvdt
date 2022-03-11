@@ -74,7 +74,7 @@ export const Form = () => {
         setIsTouched((values) => ({ ...values, [field]: true }));
     };
 
-    useEffect(async () => {
+    useEffect(() => {
         const formValues = {
             name: name,
             surname: surname,
@@ -84,13 +84,18 @@ export const Form = () => {
             dob: dob,
             comment: comment,
         };
-        const errorMessages = await validateForm(formValues);
 
-        if (errorMessages) {
-            setFormErrors(errorMessages);
-        } else {
-            setFormErrors({});
-        }
+        const getErrorMessages = async () => {
+            const errorMessages = await validateForm(formValues);
+
+            if (errorMessages) {
+                setFormErrors(errorMessages);
+            } else {
+                setFormErrors({});
+            }
+        };
+
+        getErrorMessages();
     }, [name, surname, email, phone, gender, dob, comment]);
 
     const clearFormValues = () => {
