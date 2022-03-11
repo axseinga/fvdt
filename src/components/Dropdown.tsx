@@ -2,6 +2,21 @@ import { StyledDropdown } from "./styled/Dropdown.styled";
 import { useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
+type Position = {
+    gridColumn: string;
+    gridRow: string;
+};
+
+type DropdownProps = {
+    label: string;
+    placeholder: string;
+    options: string[];
+    position: Position;
+    handleChange: (o: string) => void;
+    errorMessage: string;
+    isTouched: boolean;
+};
+
 export const Dropdown = ({
     label,
     placeholder,
@@ -10,7 +25,7 @@ export const Dropdown = ({
     handleChange,
     errorMessage,
     isTouched,
-}) => {
+}: DropdownProps) => {
     const [isVisible, setIsVisible] = useState(false);
 
     return (
