@@ -2,6 +2,20 @@ import { StyledInputDob } from "./styled/InputDob.styled";
 import { Input } from "./Input";
 import { currentDate } from "../utils/currentDate";
 
+type InputDobProps = {
+    day: string;
+    setDay: () => void;
+    month: string;
+    setMonth: () => void;
+    year: string;
+    setYear: () => void;
+    handleBlur: () => void;
+    errorMessage: string;
+    isDayTouched: boolean;
+    isMonthTouched: boolean;
+    isYearTouched: boolean;
+};
+
 export const InputDob = ({
     day,
     setDay,
@@ -14,7 +28,7 @@ export const InputDob = ({
     isDayTouched,
     isMonthTouched,
     isYearTouched,
-}) => {
+}: InputDobProps) => {
     const currentYear = currentDate.slice(0, 4);
     const isTouched = isDayTouched && isMonthTouched && isYearTouched;
     return (

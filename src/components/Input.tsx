@@ -11,11 +11,13 @@ type InputProps = {
     type: string;
     value: string;
     handleChange: () => void;
-    position: Position;
+    position?: Position;
     width: string | null;
     handleBlur: (field: string) => void;
-    isTouched: boolean;
-    errorMessage: string;
+    isTouched?: boolean;
+    errorMessage?: string;
+    min?: string;
+    max?: string;
 };
 
 export const Input = ({
