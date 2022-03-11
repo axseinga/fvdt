@@ -1,5 +1,21 @@
 import { StyledTextarea } from "./styled/Textarea.styled";
 
+type Position = {
+    gridColumn: string;
+    gridRow: string;
+};
+
+type TextareaProps = {
+    field: string;
+    label: string;
+    position: Position;
+    value: string;
+    handleChange: () => void;
+    handleBlur: (field: string) => void;
+    errorMessage: string;
+    isTouched: boolean;
+};
+
 export const Textarea = ({
     field,
     label,
@@ -9,7 +25,7 @@ export const Textarea = ({
     handleBlur,
     errorMessage,
     isTouched,
-}) => {
+}: TextareaProps) => {
     return (
         <StyledTextarea style={position}>
             <div>
