@@ -83,7 +83,7 @@ export const Form = () => {
 
     type ErrorType = {
         [key: string]: string;
-    }[];
+    };
 
     type ErrorMessagesType = {
         name?: string;
@@ -105,7 +105,7 @@ export const Form = () => {
                 abortEarly: false,
             });
         } catch (err: any) {
-            let errors: ErrorType[] | [] = [];
+            let errors: ErrorType[] = [];
             err.inner.forEach((error: ErrorType) => {
                 errors.push({ [error.path]: error.message });
             });
