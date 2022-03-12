@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // url would be hidden in .env file in real project //
-const baseUrl = "http://localhost:3001/users";
+const baseUrl: string = "http://localhost:3001/users";
 
 type UserType = {
     name: string;
