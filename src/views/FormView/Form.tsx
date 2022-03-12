@@ -80,7 +80,7 @@ export const Form = () => {
 
     const validateForm = async (
         formValues: FormValuesTypes
-    ): Promise<ErrorMessagesTypes> => {
+    ): Promise<ErrorMessagesTypes | void> => {
         const schema = newUserSchema();
 
         try {
