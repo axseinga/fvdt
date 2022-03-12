@@ -11,7 +11,11 @@ type TextareaProps = {
     label: string;
     position: Position;
     value: string;
-    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    handleChange: (
+        e?:
+            | React.ChangeEvent<HTMLInputElement>
+            | React.ChangeEvent<HTMLTextAreaElement>
+    ) => void;
     handleBlur: (field: string) => void;
     errorMessage: string;
     isTouched: boolean;

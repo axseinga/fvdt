@@ -85,7 +85,19 @@ export const Form = () => {
         [key: string]: string;
     }[];
 
-    const validateForm = async (formValues: FormValuesTypes) => {
+    type ErrorMessagesType = {
+        name?: string;
+        surname?: string;
+        email?: string;
+        phone?: string;
+        gender?: string;
+        dob?: string;
+        comment?: string;
+    } | void;
+
+    const validateForm = async (
+        formValues: FormValuesTypes
+    ): Promise<ErrorMessagesType> => {
         const schema = newUserSchema();
 
         try {
@@ -97,7 +109,10 @@ export const Form = () => {
             err.inner.forEach((error: ErrorType) => {
                 errors.push({ [error.path]: error.message });
             });
-            const errorMessages = Object.assign({}, ...errors);
+            const errorMessages: ErrorMessagesType = Object.assign(
+                {},
+                ...errors
+            );
             return errorMessages;
         }
     };
@@ -130,7 +145,7 @@ export const Form = () => {
         getErrorMessages();
     }, [name, surname, email, phone, gender, dob, comment]);
 
-    const clearFormValues = () => {
+    const clearFormValues = (): void => {
         resetName();
         resetSurname();
         resetEmail();
