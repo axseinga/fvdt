@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from "react";
+import { createContext } from "react";
 
 type FormErrorsState = {
     name?: string;
@@ -22,13 +22,11 @@ type isTouchedState = {
     comment: boolean;
 };
 
-type FormTabsContextState =
-    | {
-          toggleTab?: (first: boolean, second: boolean, third: boolean) => void;
-          handleBlur?: (field: string) => void;
-          formErrors: FormErrorsState;
-          isTouched: isTouchedState;
-      }
-    | [];
+type FormTabsContextState = {
+    toggleTab: (first: boolean, second: boolean, third: boolean) => void | null;
+    handleBlur: (field: string) => void | null;
+    formErrors: FormErrorsState;
+    isTouched: isTouchedState;
+};
 
-export const FormTabsContext = createContext<FormTabsContextState>([]);
+export const FormTabsContext = createContext({} as FormTabsContextState);

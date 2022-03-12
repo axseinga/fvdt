@@ -10,8 +10,8 @@ type InputDobProps = {
     setMonth: (e: ChangeEvent<HTMLInputElement>) => void;
     year: string;
     setYear: (e: ChangeEvent<HTMLInputElement>) => void;
-    handleBlur: () => void;
-    errorMessage: string;
+    handleBlur: (field: string) => void;
+    errorMessage?: string;
     isDayTouched: boolean;
     isMonthTouched: boolean;
     isYearTouched: boolean;

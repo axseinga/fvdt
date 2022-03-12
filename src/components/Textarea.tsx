@@ -17,7 +17,7 @@ type TextareaProps = {
     value: string;
     handleChange: (e: ChangeEventUnion) => void;
     handleBlur: (field: string) => void;
-    errorMessage: string;
+    errorMessage?: string;
     isTouched: boolean;
 };
 

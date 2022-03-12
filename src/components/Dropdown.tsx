@@ -13,8 +13,8 @@ type DropdownProps = {
     options: string[];
     position: Position;
     handleChange: (o: string) => void;
-    handleBlur: () => void;
-    errorMessage: string;
+    handleBlur: (field: string) => void;
+    errorMessage?: string;
     isTouched: boolean;
 };
 
