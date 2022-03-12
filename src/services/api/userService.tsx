@@ -3,12 +3,7 @@ import axios from "axios";
 // url would be hidden in .env file in real project //
 const baseUrl = "http://localhost:3001/users";
 
-export const getUsers = () => {
-    const request = axios.get(baseUrl);
-    return request.then((response) => response.data);
-};
-
-type NewUserType = {
+type UserType = {
     name: string;
     surname: string;
     email: string;
@@ -18,12 +13,17 @@ type NewUserType = {
     comment: string;
 };
 
-export const createUser = (user: NewUserType) => {
+export const getUsers = (): Promise<UserType[]> => {
+    const request = axios.get(baseUrl);
+    return request.then((response) => response.data);
+};
+
+export const createUser = (user: UserType): Promise<UserType> => {
     const request = axios.post(baseUrl, user);
     return request.then((response) => response.data);
 };
 
-export const removeUser = (id: string) => {
+export const removeUser = (id: string): Promise<UserType> => {
     const request = axios.delete(`${baseUrl}/${id}`);
     return request.then((response) => response.data);
 };

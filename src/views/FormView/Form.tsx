@@ -61,7 +61,7 @@ export const Form = () => {
     });
 
     useEffect(() => {
-        const date = `${year}-${month}-${day}`;
+        const date: string = `${year}-${month}-${day}`;
         setDob(date);
     }, [day, month, year]);
 
@@ -92,7 +92,7 @@ export const Form = () => {
             schema.validateSync(formValues, {
                 abortEarly: false,
             });
-        } catch (err) {
+        } catch (err: any) {
             let errors: ErrorType[] | [] = [];
             err.inner.forEach((error: ErrorType) => {
                 errors.push({ [error.path]: error.message });
@@ -195,7 +195,7 @@ export const Form = () => {
         comment: string;
     };
 
-    const handleSubmit = (e: Event) => {
+    const handleSubmit = (e: Event): void => {
         e.preventDefault();
         setIsTouched({
             name: true,

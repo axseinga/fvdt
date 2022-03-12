@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { ChangeEvent } from "react";
 import { Tab } from "../../components/Tab";
 import { TabHeader } from "../../components/TabHeader";
 import { TabBody } from "../../components/TabBody";
@@ -14,15 +15,15 @@ type TabStep2Props = {
     validateSecondStep: () => void;
     tab2: boolean;
     phone: string;
-    setPhone: () => void;
+    setPhone: (e: ChangeEvent<HTMLInputElement>) => void;
     gender: string;
-    setGender: () => void;
+    setGender: (o: string) => void;
     day: string;
-    setDay: () => void;
+    setDay: (e: ChangeEvent<HTMLInputElement>) => void;
     month: string;
-    setMonth: () => void;
+    setMonth: (e: ChangeEvent<HTMLInputElement>) => void;
     year: string;
-    setYear: () => void;
+    setYear: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const TabStep2 = ({

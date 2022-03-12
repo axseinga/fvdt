@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { ChangeEvent } from "react";
 import { Tab } from "../../components/Tab";
 import { TabHeader } from "../../components/TabHeader";
 import { TabBody } from "../../components/TabBody";
@@ -11,11 +12,11 @@ type TabStep1Props = {
     validateFirstStep: () => void;
     tab1: boolean;
     name: string;
-    setName: () => void;
+    setName: (e: ChangeEvent<HTMLInputElement>) => void;
     surname: string;
-    setSurname: () => void;
+    setSurname: (e: ChangeEvent<HTMLInputElement>) => void;
     email: string;
-    setEmail: () => void;
+    setEmail: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const TabStep1 = ({

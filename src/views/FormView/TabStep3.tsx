@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { ChangeEvent } from "react";
 import { Tab } from "../../components/Tab";
 import { TabHeader } from "../../components/TabHeader";
 import { TabBody } from "../../components/TabBody";
@@ -9,7 +10,7 @@ import { FormTabsContext } from "../../services/context/FormTabsContext";
 type TabStep3Props = {
     tab3: boolean;
     comment: string;
-    setComment: () => void;
+    setComment: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const TabStep3 = ({ tab3, comment, setComment }: TabStep3Props) => {

@@ -26,7 +26,7 @@ type FormTabsContextState = {
     toggleTab: (first: boolean, second: boolean, third: boolean) => void | null;
     handleBlur: (field: string) => void | null;
     formErrors: FormErrorsState;
-    isTouched: boolean;
+    isTouched: isTouchedState;
 } | null;
 
 export const FormTabsContext = createContext<FormTabsContextState>(null);

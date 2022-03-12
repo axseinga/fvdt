@@ -1,14 +1,15 @@
+import { ChangeEvent } from "react";
 import { StyledInputDob } from "./styled/InputDob.styled";
 import { Input } from "./Input";
 import { currentDate } from "../utils/currentDate";
 
 type InputDobProps = {
     day: string;
-    setDay: () => void;
+    setDay: (e: ChangeEvent<HTMLInputElement>) => void;
     month: string;
-    setMonth: () => void;
+    setMonth: (e: ChangeEvent<HTMLInputElement>) => void;
     year: string;
-    setYear: () => void;
+    setYear: (e: ChangeEvent<HTMLInputElement>) => void;
     handleBlur: () => void;
     errorMessage: string;
     isDayTouched: boolean;

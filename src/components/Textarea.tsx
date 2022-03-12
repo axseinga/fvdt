@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { StyledTextarea } from "./styled/Textarea.styled";
 
 type Position = {
@@ -10,7 +11,7 @@ type TextareaProps = {
     label: string;
     position: Position;
     value: string;
-    handleChange: () => void;
+    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
     handleBlur: (field: string) => void;
     errorMessage: string;
     isTouched: boolean;
