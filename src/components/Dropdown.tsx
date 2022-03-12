@@ -1,17 +1,13 @@
 import { StyledDropdown } from "./styled/Dropdown.styled";
 import { useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
-
-type Position = {
-    gridColumn: string;
-    gridRow: string;
-};
+import { PositionTypes } from "./types/types";
 
 type DropdownProps = {
     label: string;
     placeholder: string;
     options: string[];
-    position: Position;
+    position: PositionTypes;
     handleChange: (o: string) => void;
     handleBlur: (field: string) => void;
     errorMessage?: string;

@@ -1,17 +1,8 @@
 import axios from "axios";
+import { UserType } from "components/types/types";
 
 // url would be hidden in .env file in real project //
 const baseUrl: string = "http://localhost:3001/users";
-
-type UserType = {
-    name: string;
-    surname: string;
-    email: string;
-    phone: string;
-    gender: string;
-    dob: string;
-    comment: string;
-};
 
 export const getUsers = (): Promise<UserType[]> => {
     const request = axios.get(baseUrl);

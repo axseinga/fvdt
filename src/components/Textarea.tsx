@@ -1,10 +1,6 @@
 import { ChangeEvent } from "react";
 import { StyledTextarea } from "./styled/Textarea.styled";
-
-type Position = {
-    gridColumn: string;
-    gridRow: string;
-};
+import { PositionTypes } from "./types/types";
 
 type ChangeEventUnion =
     | ChangeEvent<HTMLInputElement>
@@ -13,7 +9,7 @@ type ChangeEventUnion =
 type TextareaProps = {
     field: string;
     label: string;
-    position: Position;
+    position: PositionTypes;
     value: string;
     handleChange: (e: ChangeEventUnion) => void;
     handleBlur: (field: string) => void;

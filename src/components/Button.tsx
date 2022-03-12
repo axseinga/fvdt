@@ -1,16 +1,12 @@
 import { ReactNode } from "react";
 import { StyledButton } from "./styled/Button.styled";
-
-type Position = {
-    gridColumn: string;
-    gridRow: string;
-};
+import { PositionTypes } from "./types/types";
 
 type ButtonProps = {
     type: string;
     children: ReactNode;
     handleClick?: () => void;
-    position?: Position;
+    position?: PositionTypes;
 };
 
 export const Button = ({

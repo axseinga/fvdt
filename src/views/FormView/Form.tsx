@@ -7,6 +7,11 @@ import { StyledForm } from "./styled/Form.styled";
 import { TabStep1 } from "./TabStep1";
 import { TabStep2 } from "./TabStep2";
 import { TabStep3 } from "./TabStep3";
+import {
+    FormErrorsState,
+    IsTouchedState,
+    UserType,
+} from "components/types/types";
 
 export const Form = () => {
     const [tab1, setTab1] = useState<boolean>(true);
@@ -24,31 +29,9 @@ export const Form = () => {
     const [comment, setComment, resetComment] = useInputState("");
     const [dob, setDob] = useState<string>("");
 
-    type FormErrorsState = {
-        name?: string;
-        surname?: string;
-        email?: string;
-        phone?: string;
-        gender?: string;
-        dob?: string;
-        comment?: string;
-    };
-
     const [formErrors, setFormErrors] = useState<FormErrorsState>({});
 
-    type isTouchedState = {
-        name: boolean;
-        surname: boolean;
-        email: boolean;
-        phone: boolean;
-        gender: boolean;
-        day: boolean;
-        month: boolean;
-        year: boolean;
-        comment: boolean;
-    };
-
-    const [isTouched, setIsTouched] = useState<isTouchedState>({
+    const [isTouched, setIsTouched] = useState<IsTouchedState>({
         name: false,
         surname: false,
         email: false,
@@ -81,11 +64,11 @@ export const Form = () => {
         comment: string;
     };
 
-    type ErrorType = {
+    type ErrorTypes = {
         [key: string]: string;
     };
 
-    type ErrorMessagesType = {
+    type ErrorMessagesTypes = {
         name?: string;
         surname?: string;
         email?: string;
@@ -97,7 +80,7 @@ export const Form = () => {
 
     const validateForm = async (
         formValues: FormValuesTypes
-    ): Promise<ErrorMessagesType> => {
+    ): Promise<ErrorMessagesTypes> => {
         const schema = newUserSchema();
 
         try {
@@ -105,11 +88,11 @@ export const Form = () => {
                 abortEarly: false,
             });
         } catch (err: any) {
-            let errors: ErrorType[] = [];
-            err.inner.forEach((error: ErrorType) => {
+            let errors: ErrorTypes[] = [];
+            err.inner.forEach((error: ErrorTypes) => {
                 errors.push({ [error.path]: error.message });
             });
-            const errorMessages: ErrorMessagesType = Object.assign(
+            const errorMessages: ErrorMessagesTypes = Object.assign(
                 {},
                 ...errors
             );
@@ -200,16 +183,6 @@ export const Form = () => {
         } else return;
     };
 
-    type NewUserType = {
-        name: string;
-        surname: string;
-        email: string;
-        phone: string;
-        gender: string;
-        dob: string;
-        comment: string;
-    };
-
     const handleSubmit = (e: Event): void => {
         e.preventDefault();
         setIsTouched({
@@ -224,7 +197,7 @@ export const Form = () => {
             comment: true,
         });
         if (Object.keys(formErrors).length === 0) {
-            const newUser: NewUserType = {
+            const newUser: UserType = {
                 name: name,
                 surname: surname,
                 email: email,

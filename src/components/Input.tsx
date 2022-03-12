@@ -1,10 +1,6 @@
 import { StyledInput } from "./styled/Input.styled";
 import { ChangeEvent } from "react";
-
-type Position = {
-    gridColumn: string;
-    gridRow: string;
-};
+import { PositionTypes } from "./types/types";
 
 type InputProps = {
     field: string;
@@ -12,7 +8,7 @@ type InputProps = {
     type: string;
     value: string;
     handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    position?: Position;
+    position?: PositionTypes;
     width?: string;
     handleBlur: (field: string) => void;
     isTouched?: boolean;
