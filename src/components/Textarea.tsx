@@ -6,16 +6,16 @@ type Position = {
     gridRow: string;
 };
 
+type ChangeEventUnion =
+    | ChangeEvent<HTMLInputElement>
+    | ChangeEvent<HTMLTextAreaElement>;
+
 type TextareaProps = {
     field: string;
     label: string;
     position: Position;
     value: string;
-    handleChange: (
-        e?:
-            | React.ChangeEvent<HTMLInputElement>
-            | React.ChangeEvent<HTMLTextAreaElement>
-    ) => void;
+    handleChange: (e: ChangeEventUnion) => void;
     handleBlur: (field: string) => void;
     errorMessage: string;
     isTouched: boolean;

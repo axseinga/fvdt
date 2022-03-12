@@ -7,10 +7,14 @@ import { Textarea } from "../../components/Textarea";
 import { Button } from "../../components/Button";
 import { FormTabsContext } from "../../services/context/FormTabsContext";
 
+type ChangeEventUnion =
+    | ChangeEvent<HTMLInputElement>
+    | ChangeEvent<HTMLTextAreaElement>;
+
 type TabStep3Props = {
     tab3: boolean;
     comment: string;
-    setComment: (e: ChangeEvent<HTMLInputElement>) => void;
+    setComment: (e: ChangeEventUnion) => void;
 };
 
 export const TabStep3 = ({ tab3, comment, setComment }: TabStep3Props) => {
