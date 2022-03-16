@@ -160,7 +160,7 @@ export const Form = () => {
             email: true,
         }));
 
-        if (Object.keys(formErrors).length === 4) {
+        if (!formErrors.name && !formErrors.surname && !formErrors.email) {
             toggleTab(false, true, false);
         } else return;
     };
@@ -178,7 +178,15 @@ export const Form = () => {
             year: true,
         }));
 
-        if (Object.keys(formErrors).length === 1) {
+        if (
+            !formErrors.name &&
+            !formErrors.surname &&
+            !formErrors.email &&
+            !formErrors.email &&
+            !formErrors.phone &&
+            !formErrors.gender &&
+            !formErrors.dob
+        ) {
             toggleTab(false, false, true);
         } else return;
     };
